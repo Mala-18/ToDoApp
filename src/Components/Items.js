@@ -1,23 +1,13 @@
 import "./Items.css"
 
-function Items(){
-
-const date= new Date();
-
-const currentDate= date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
-
-const hours=(date.getHours()%12) || 12;
-
-const amOrPm= hours>=12 ? 'pm' : 'am';
-
-const currentTime= hours+" "+amOrPm;
+function Items(props){
 
     return(
         <div className="items">
             <div className="items-list">
                 <div className="items-text">
-                    <p>Task 1</p>
-                    <p>{currentTime}, {currentDate}</p>
+                    <p>{props.items.item1.text}</p>
+                    <p>{props.items.item1.dateAndTime}</p>
                 </div>
                 <div className="items-btn">
                     <button>Delete</button>
@@ -27,8 +17,8 @@ const currentTime= hours+" "+amOrPm;
             </div>
             <div className="items-list">
                 <div className="items-text">
-                    <p>Task 2</p>
-                    <p>{currentTime}, {currentDate}</p>
+                    <p>{props.items.item1.text}</p>
+                    <p>{props.items.item1.dateAndTime}</p>
                 </div>
                 <div className="items-btn">
                     <button>Delete</button>
