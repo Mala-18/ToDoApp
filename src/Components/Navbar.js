@@ -1,24 +1,33 @@
 import "./Navbar.css"
-import 'reactjs-popup/dist/index.css';
+// import 'reactjs-popup/dist/index.css';
 // import {useState} from 'react'
 import Popup from "reactjs-popup";
 
 function Navbar(){
-    // const [isShown,setIsShown]=useState(false);
-
-    // const handleClick=event=>{
-    //     setIsShown(prevShown=> !prevShown)
-    // }
+    
 
     return(
         <div className="navbar">
 
-            {/* <button onClick={handleClick} className="navbar-btn">Add Task</button>
-            { isShown && <p>I am shown !</p> } */}
+            <Popup className="navbar-popup-box" trigger={<button className="navbar-btn"> Add Task </button>}>
 
-            <Popup trigger={<button className="navbar-btn"> Add Task </button>}>
-                <div>
-                    <p>I am shown</p>
+                <div className="navbar-popup">
+                    <h2>Add Task</h2>
+                    <label className="navbar-btn-title"> Title
+                        <input type="text"/>
+                    </label>
+                    
+                    <label className="navbar-btn-status"> Status
+                        <select name="status" id="status">
+                            <option>Complete</option>
+                            <option>Incomplete</option>
+                        </select>
+                    </label>
+                    <div className="navbar-popup-btns">
+                        <button className="navbar-popup-btns-btn1"> Add task</button>
+                        <button className="navbar-popup-btns-btn2"> Cancel </button>
+                    </div>
+                    
                 </div>
             </Popup>
             <select className="navbar-select" name="items" id="items">
