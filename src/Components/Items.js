@@ -1,30 +1,20 @@
 import "./Items.css"
+import itemsList from "../TaskList";
+import ItemsList from "./ItemsList";
 
-function Items(props){
+function Items(){
 
     return(
         <div className="items">
-            <div className="items-list">
-                <div className="items-text">
-                    <p>{props.items.item1.text}</p>
-                    <p>{props.items.item1.dateAndTime}</p>
-                </div>
-                <div className="items-btn">
-                    <button>Delete</button>
-                    <button>Edit</button>
-                </div>
+            {
+                itemsList.length===0 ?
+                <ItemsList text="No tasks found"/> :
                 
-            </div>
-            <div className="items-list">
-                <div className="items-text">
-                    <p>{props.items.item1.text}</p>
-                    <p>{props.items.item1.dateAndTime}</p>
-                </div>
-                <div className="items-btn">
-                    <button>Delete</button>
-                    <button>Edit</button>
-                </div>
-            </div>
+                itemsList.map(items=>{
+                    return(
+                        <ItemsList text={items.text} dateAndTime={items.dateAndTime}/>
+                    )
+            })}
         </div>
     )
 }
