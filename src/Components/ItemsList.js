@@ -1,4 +1,4 @@
-
+import "./ItemsList.css"
 function ItemsList(props){
     return(
            <div>

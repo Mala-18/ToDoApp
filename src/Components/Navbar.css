@@ -7,6 +7,14 @@
     padding-left: 15%;
     padding-right: 15%;
     font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttons{
+    display:flex;
+    justify-content: space-between;
 }
 
 .navbar-btn{
@@ -17,73 +25,22 @@
     padding-right: 5%;
     padding-top: 2%;
     padding-bottom: 2%;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size:17px;
     font-weight: 300;
 }
 
 .navbar-select{
-    background-color: #868689;
+    background-color: #a6a6ac;
     color: white;
     padding:2%;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     font-size: 17px;
 }
 
-.navbar-popup{
-    background-color: #dedee7;
-    color: black;
-    width:50%;
-    font-family: Poppins;
-    margin: 250px;
-    padding: 50px;
-    border-color: black;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.navbar-btn-title input{
-    width: 100%;
-    border: none;
+.items{
+    background-color: rgb(205, 199, 199);
+    margin-top: 10px;
     border-radius: 5px;
-    padding: 10px;
-    margin: 5px 0px 20px;
-}
-
-.navbar-btn-status select{
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0px 25px;
-
-}
-
-.navbar-popup-btns-btn1{
-    background-color: #646ff0;
-    color: white;
-    border: none;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    border-radius: 5px;
-    font-size:17px;
-    font-weight: 300;
-}
-
-.navbar-popup-btns-btn2{
-    background-color: #d7d8de;
-    color: grey;
-    border: none;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    border-radius: 5px;
-    font-size:17px;
-    font-weight: 300;
 }
