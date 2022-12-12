@@ -15,7 +15,7 @@ function Navbar(){
     }
     
     const [title,setTitle] = useState("");
-    const [status,setStatus] = useState("");
+    const [status,setStatus] = useState("All");
     const [popup,setPopup] = useState(false);
     const [items,setItems] = useState([
         {
@@ -49,26 +49,26 @@ function Navbar(){
     }
     const handleSubmit = event =>{
         setPopup(false);
-        const completeOrNot= status==="Complete" ? true : false;
         setItems(prev=>
             [
                 ...prev,
                 {
                     text:title,
                     dateAndTime:currentDateTime(),
-                    isComplete:completeOrNot
+                    isComplete:false
                 }
             ]
         );
     
     }
-
+    
+    
     return(
         <div className="navbar">
             <div className="buttons">
                 <button  onClick={handleButtonClick} className="navbar-btn">Add Task</button>
 
-                <select className="navbar-select" name="items" id="items">
+                <select className="navbar-select" name="items" id="items" value={status} onChange={(e)=>setStatus(e.target.value)}>
                     <option>All</option>
                     <option>Complete</option>
                     <option>Incomplete</option>
@@ -77,14 +77,14 @@ function Navbar(){
             </div>
 
             <div className="items">
-                {
+                { 
                     items.length===0 ?
-                    <ItemsList text="No tasks found"/> 
+                    <ItemsList text="No tasks found"/>
                     :
                     items.map(item=>{
                         return(
                             <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
-                              )})        
+                              )})
                 }
 
             </div>
@@ -104,12 +104,12 @@ function Navbar(){
                                         <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                                     </label>
                             
-                                    <label className="navbar-btn-status"> Status
+                                    {/* <label className="navbar-btn-status"> Status
                                         <select name="status" id="status" value={status} onChange={(e)=>setStatus(e.target.value)}>
                                             <option>Complete</option>
                                             <option>Incomplete</option>
                                         </select>
-                                    </label>
+                                    </label> */}
                                     <button type="submit" className="navbar-popup-btns-btn1" >Add Task</button>
 
                                 </form>
