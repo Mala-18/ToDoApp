@@ -1,9 +1,39 @@
 import "./Navbar.css"
 import ItemsList from "./ItemsList";
 import {useState} from 'react'
-import itemsList from "../TaskList"
+//import itemsList from "../TaskList"
+import { RxCrossCircled } from "react-icons/rx"
 
 function Navbar(){
+    const date= new Date();
+
+    const currentDate= date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
+
+    const hours=(date.getHours()%12) || 12;
+
+    const amOrPm= hours>=12 ? 'pm' : 'am';
+
+    const currentTime= hours+" "+amOrPm;
+
+    var itemsList = [
+        {
+            text:"Make bed",
+            dateAndTime:currentTime+" "+currentDate
+        },
+        {
+            text:"Meditate",
+            dateAndTime:currentTime+" "+currentDate
+        },
+        {
+            text:"Journal",
+            dateAndTime:currentTime+" "+currentDate
+        },
+        {
+            text:"Gratitude Practice",
+            dateAndTime:currentTime+" "+currentDate
+        }
+    ]
+
     const [title,setTitle] = useState("");
     const [status,setStatus] = useState("");
     const [popup,setPopup] = useState(false);
@@ -65,7 +95,7 @@ function Navbar(){
                         <div className="navbar-popup">
                             <div className="navbar-popup-header">
                                 <h1>Add Task</h1>
-                                <h1 onClick={closePopup}>X</h1>
+                                <RxCrossCircled size={25} onClick={closePopup}/>
                             </div>
                             <div className="navbar-popup-form">
                                 <form onSubmit={handleSubmit}>

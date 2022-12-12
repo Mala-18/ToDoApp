@@ -31,7 +31,7 @@
 }
 
 .navbar-select{
-    background-color: #a6a6ac;
+    background-color: #d0d0e4;
     color: white;
     padding:2%;
     border-radius: 5px;
@@ -40,14 +40,14 @@
 }
 
 .items{
-    background-color: rgb(205, 199, 199);
+    background-color: #d0d0e4;
     margin-top: 10px;
     border-radius: 5px;
 }
 
 
 .navbar-popup{
-    background-color: rgba(255, 255, 255, 0.434);
+    background-color: #e0e0f5;
     padding: 20px;
     border-radius: 10px;
 }
@@ -55,6 +55,7 @@
 .navbar-popup-header{
     margin: 10px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
