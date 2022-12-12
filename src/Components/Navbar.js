@@ -1,42 +1,44 @@
 import "./Navbar.css"
 import ItemsList from "./ItemsList";
 import {useState} from 'react'
-//import itemsList from "../TaskList"
 import { RxCrossCircled } from "react-icons/rx"
 
 function Navbar(){
-    const date= new Date();
 
-    const currentDate= date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
-
-    const hours=(date.getHours()%12) || 12;
-
-    const amOrPm= hours>=12 ? 'pm' : 'am';
-
-    const currentTime= hours+" "+amOrPm;
-
-    var itemsList = [
-        {
-            text:"Make bed",
-            dateAndTime:currentTime+" "+currentDate
-        },
-        {
-            text:"Meditate",
-            dateAndTime:currentTime+" "+currentDate
-        },
-        {
-            text:"Journal",
-            dateAndTime:currentTime+" "+currentDate
-        },
-        {
-            text:"Gratitude Practice",
-            dateAndTime:currentTime+" "+currentDate
-        }
-    ]
-
+    const currentDateTime = () =>{
+        const date= new Date();
+        const currentDate= date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
+        const hours=(date.getHours()%12) || 12;
+        const amOrPm= hours>=12 ? 'am' : 'pm';
+        const currentTime= hours+" "+amOrPm;
+        return currentTime+" "+currentDate;
+    }
+    
     const [title,setTitle] = useState("");
     const [status,setStatus] = useState("");
     const [popup,setPopup] = useState(false);
+    const [items,setItems] = useState([
+        {
+            text:"Make bed",
+            dateAndTime:currentDateTime(),
+            isComplete: false
+        },
+        {
+            text:"Meditate",
+            dateAndTime:currentDateTime(),
+            isComplete: true
+        },
+        {
+            text:"Journal",
+            dateAndTime:currentDateTime(),
+            isComplete: false
+        },
+        {
+            text:"Gratitude Practice",
+            dateAndTime:currentDateTime(),
+            isComplete: true
+        }
+    ])
 
     const handleButtonClick = () => {
         setPopup(!popup);
@@ -46,20 +48,19 @@ function Navbar(){
         setPopup(false);
     }
     const handleSubmit = event =>{
-        setPopup(false)
-        const date= new Date();
-
-        const currentDate= date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
-
-        const hours=(date.getHours()%12) || 12;
-
-        const amOrPm= hours>=12 ? 'pm' : 'am';
-
-        const currentTime= hours+" "+amOrPm;
-
-        itemsList.push({text : title, dateAndTime : currentTime+" "+currentDate})
-
-        
+        setPopup(false);
+        const completeOrNot= status==="Complete" ? true : false;
+        setItems(prev=>
+            [
+                ...prev,
+                {
+                    text:title,
+                    dateAndTime:currentDateTime(),
+                    isComplete:completeOrNot
+                }
+            ]
+        );
+    
     }
 
     return(
@@ -77,13 +78,13 @@ function Navbar(){
 
             <div className="items">
                 {
-                    itemsList.length===0 ?
-                    <ItemsList text="No tasks found"/> :
-                    
-                    itemsList.map(items=>{
+                    items.length===0 ?
+                    <ItemsList text="No tasks found"/> 
+                    :
+                    items.map(item=>{
                         return(
-                            <ItemsList text={items.text} dateAndTime={items.dateAndTime}/>
-                              )})
+                            <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
+                              )})        
                 }
 
             </div>
@@ -95,7 +96,7 @@ function Navbar(){
                         <div className="navbar-popup">
                             <div className="navbar-popup-header">
                                 <h1>Add Task</h1>
-                                <RxCrossCircled size={25} onClick={closePopup}/>
+                                <RxCrossCircled size={25} onClick={closePopup} />
                             </div>
                             <div className="navbar-popup-form">
                                 <form onSubmit={handleSubmit}>
@@ -109,7 +110,7 @@ function Navbar(){
                                             <option>Incomplete</option>
                                         </select>
                                     </label>
-                                    <button className="navbar-popup-btns-btn1">Add Task</button>
+                                    <button type="submit" className="navbar-popup-btns-btn1" >Add Task</button>
 
                                 </form>
                             </div>

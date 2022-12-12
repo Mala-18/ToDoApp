@@ -1,35 +1,54 @@
 import "./ItemsList.css"
-//import { TfiCheck,TfiTrash,TfiPencil } from "react-icons/tfi"
 import { RxTrash,RxPencil1,RxCheck } from "react-icons/rx"
+import { useState } from "react"
 
-function ItemsList(props){
+function ItemsList({ allTasks, removeTasks, text, dateAndTime, isComplete}){
+
+    const [style,setStyle] = useState("before");
+
+    const changeStyle = () => {
+        setStyle("after");
+        isComplete=true;
+    }
+
+    const handleRemove = () => {
+        const filteredTasks=allTasks.filter((task)=> task.text !== text);
+        removeTasks(filteredTasks);
+    }
+    console.log(allTasks);
     return(
            <div>
-                {
-                    Object.keys(props).length===1 ?
-                    <div className="items-list" style={{textAlign:'center', marginLeft: 185, width:100}}>
-                        <div className="items-text">
-                            <p>{props.text}</p>
-                            <p>{props.dateAndTime}</p>
-                        </div>
-                    </div>
-                    :
-                    <div className="items-list">
-                        <div className="items-text">
-                            <div>
-                                <RxCheck size={29} strokeWidth={0} marginLeft={10}/>
+                
+                    
+                    
+                    
+                            <div className="items-list">
+                                <div className="items-text">
+                                    <div>
+                                        
+                                            <RxCheck size={29} className={style} onClick={changeStyle}/>
+                                           
+                                     
+                                    </div>
+                                    <div>
+                                    
+                                            <div>
+                                                <p>{text}</p>
+                                                <p>{dateAndTime}</p>
+                                            </div>
+                                        
+                                        
+                                    </div>               
+                                </div>
+                                <div className="items-btn">
+                                    <RxTrash size={20} onClick={handleRemove}/>
+                                    <RxPencil1 size={20}/>
+                                </div>
                             </div>
-                            <div>
-                                <p>{props.text}</p>
-                                <p>{props.dateAndTime}</p>
-                            </div>               
-                        </div>
-                        <div className="items-btn">
-                            <RxTrash size={25}/>
-                            <RxPencil1 size={25}/>
-                        </div>
-                    </div>
-                }
+                        
+                    
+                    
+                
             </div>            
         
     )

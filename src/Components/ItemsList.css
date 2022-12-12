@@ -40,3 +40,11 @@
 .items-btn{
     width: 15%;
 }
+
+.before{
+    color: lightgrey;
+}
+
+.after{
+    color: black
+}
