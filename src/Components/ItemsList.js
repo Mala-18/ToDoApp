@@ -40,6 +40,11 @@ function ItemsList({ allTasks, removeTasks, text, dateAndTime, isComplete}){
 
     const handleUpdateSubmit = () => {
         setEdit(false);
+        var index=allTasks.findIndex(task=>task.text===text);
+        allTasks[index].text=title;
+        removeTasks(allTasks);
+        NotificationManager.info('Task Updated','Updated',1000);
+        
     }
     
     return(
@@ -79,7 +84,7 @@ function ItemsList({ allTasks, removeTasks, text, dateAndTime, isComplete}){
                                     <div className="update-popup-form">
                                         <form onSubmit={handleUpdateSubmit}>
                                             <label className="update-btn-title"> Title
-                                                <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)}/>
+                                                <input placeholder={text} type="text" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                                             </label>
                                     
                                             <label className="navbar-btn-status"> Status
