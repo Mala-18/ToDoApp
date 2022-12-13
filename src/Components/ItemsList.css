@@ -13,7 +13,7 @@
     margin-right: 1rem;
     padding: 0.5rem;
     font-size: small;
-    
+    position: relative;
 }
 
 .items-text{
@@ -57,6 +57,9 @@
     background-color: #e0e0f5;
     padding: 20px;
     border-radius: 10px;
+    position: absolute;
+    opacity: 0.8;
+    z-index: 9;
 }
 
 .update-popup-header{

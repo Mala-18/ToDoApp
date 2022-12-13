@@ -77,14 +77,69 @@ function Navbar(){
             </div>
 
             <div className="items">
+                <>
+                    {console.log(status)}
+                </>
                 { 
-                    items.length===0 ?
+                    
+                    // items.length===0 ?
+                    // <ItemsList text="No tasks found"/>
+                    // :
+                    // items.map(item=>{
+                    //     return(
+                    //         <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
+                    //           )})
+
+                    items.length===0?
                     <ItemsList text="No tasks found"/>
                     :
-                    items.map(item=>{
-                        return(
-                            <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
-                              )})
+                    <div>
+                        {
+                            status==="All" 
+                            ?
+                            items.map(
+                                item=>
+                                {
+                                    return(
+                                    <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
+                                )}
+                            )
+                            :
+                            <div>
+                                {
+                                    status==="Complete"
+                                    ?
+                                    <div>
+                                        {
+                                            items.map(item=>{
+                                                if(item.isComplete){
+                                                    return(
+                                                        <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
+                                                    )
+                                                }
+                                            }
+
+                                            )
+                                        }
+                                    </div>
+                                    :
+                                    <div>
+                                        {
+                                            items.map(item=>{
+                                                if(!item.isComplete){
+                                                    return(
+                                                        <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
+                                                    )
+                                                }
+                                            }
+
+                                            )
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
                 }
 
             </div>

@@ -68,12 +68,12 @@ function ItemsList({ allTasks, removeTasks, text, dateAndTime, isComplete}){
                                             <input type="text" />
                                         </label>
                                 
-                                        {/* <label className="navbar-btn-status"> Status
-                                            <select name="status" id="status" value={status} onChange={(e)=>setStatus(e.target.value)}>
+                                        <label className="navbar-btn-status"> Status
+                                            <select name="status" id="status" >
                                                 <option>Complete</option>
                                                 <option>Incomplete</option>
                                             </select>
-                                        </label> */}
+                                        </label> 
                                         <button type="submit" className="update-popup-btns-btn1" >Add Task</button>
 
                                     </form>
