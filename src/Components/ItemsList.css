@@ -16,6 +16,14 @@
     position: relative;
 }
 
+.items-text-notask{
+    width: 25%;
+    text-align: center;
+    background-color: white;
+    margin-left: 180px; 
+    border-radius: 5px;
+}
+
 .items-text{
     width: 100%;
     display: flex;
@@ -42,16 +50,14 @@
 }
 
 .before{
-    color: lightgrey;
+    color: grey;
 }
 
 .after{
     color: black;
+    font-style: italic;
 }
 
-.after > p{
-    text-decoration: line-through;
-}
 
 .update-popup{
     background-color: #e0e0f5;

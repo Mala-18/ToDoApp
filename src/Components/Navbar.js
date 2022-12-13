@@ -1,7 +1,12 @@
 import "./Navbar.css"
+// import { store } from 'react-notifications-component';
+// import 'react-notifications-component/dist/theme.css';
+// import 'animate.css';
 import ItemsList from "./ItemsList";
 import {useState} from 'react'
 import { RxCrossCircled } from "react-icons/rx"
+import { NotificationManager } from 'react-notifications';
+
 
 function Navbar(){
 
@@ -16,28 +21,10 @@ function Navbar(){
     
     const [title,setTitle] = useState("");
     const [status,setStatus] = useState("All");
+    const [secondStatus, setSecondStatus] = useState("Incomplete");
     const [popup,setPopup] = useState(false);
     const [items,setItems] = useState([
-        {
-            text:"Make bed",
-            dateAndTime:currentDateTime(),
-            isComplete: false
-        },
-        {
-            text:"Meditate",
-            dateAndTime:currentDateTime(),
-            isComplete: true
-        },
-        {
-            text:"Journal",
-            dateAndTime:currentDateTime(),
-            isComplete: false
-        },
-        {
-            text:"Gratitude Practice",
-            dateAndTime:currentDateTime(),
-            isComplete: true
-        }
+        
     ])
 
     const handleButtonClick = () => {
@@ -47,26 +34,45 @@ function Navbar(){
     const closePopup = () => {
         setPopup(false);
     }
-    const handleSubmit = event =>{
+    const handleSubmit = () =>{
         setPopup(false);
+        console.log("Inside handleSubmit func/Navbar.js")
+        console.log(secondStatus)
         setItems(prev=>
             [
                 ...prev,
                 {
                     text:title,
                     dateAndTime:currentDateTime(),
-                    isComplete:false
+                    isComplete:secondStatus
                 }
             ]
         );
-    
+        NotificationManager.success('Task added', 'Success!', 2000);
     }
+
+    // const addTaskNotification = () => {
+    //     store.addNotification({
+    //         title: 'Success',
+    //         message: 'Task is added successfully',
+    //         type: 'success',                         // 'default', 'success', 'info', 'warning'
+    //         container: 'bottom-right',                // where to position the notifications
+    //         animationIn: ["animated", "fadeIn"],     // animate.css classes that's applied
+    //         animationOut: ["animated", "fadeOut"],   // animate.css classes that's applied
+    //         dismiss: {
+    //           duration: 3000 
+    //         }
+    //       })
+    //     }
+    
     
     
     return(
         <div className="navbar">
             <div className="buttons">
-                <button  onClick={handleButtonClick} className="navbar-btn">Add Task</button>
+                <button  onClick={() => {
+                    handleButtonClick();
+                    }} className="navbar-btn">Add Task</button>
 
                 <select className="navbar-select" name="items" id="items" value={status} onChange={(e)=>setStatus(e.target.value)}>
                     <option>All</option>
@@ -77,21 +83,11 @@ function Navbar(){
             </div>
 
             <div className="items">
-                <>
-                    {console.log(status)}
-                </>
                 { 
                     
-                    // items.length===0 ?
-                    // <ItemsList text="No tasks found"/>
-                    // :
-                    // items.map(item=>{
-                    //     return(
-                    //         <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
-                    //           )})
 
                     items.length===0?
-                    <ItemsList text="No tasks found"/>
+                    <ItemsList text="No tasks"/>
                     :
                     <div>
                         {
@@ -112,7 +108,7 @@ function Navbar(){
                                     <div>
                                         {
                                             items.map(item=>{
-                                                if(item.isComplete){
+                                                if(item.isComplete==="Complete"){
                                                     return(
                                                         <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
                                                     )
@@ -126,7 +122,7 @@ function Navbar(){
                                     <div>
                                         {
                                             items.map(item=>{
-                                                if(!item.isComplete){
+                                                if(item.isComplete==="Incomplete"){
                                                     return(
                                                         <ItemsList allTasks={items} removeTasks={setItems} text={item.text} dateAndTime={item.dateAndTime} isComplete={item.isComplete}/>
                                                     )
@@ -159,12 +155,12 @@ function Navbar(){
                                         <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                                     </label>
                             
-                                    {/* <label className="navbar-btn-status"> Status
-                                        <select name="status" id="status" value={status} onChange={(e)=>setStatus(e.target.value)}>
+                                    <label className="navbar-btn-status"> Status
+                                        <select name="status" id="status" value={secondStatus} onChange={(e)=>setSecondStatus(e.target.value)}>
                                             <option>Complete</option>
                                             <option>Incomplete</option>
                                         </select>
-                                    </label> */}
+                                    </label>
                                     <button type="submit" className="navbar-popup-btns-btn1" >Add Task</button>
 
                                 </form>
