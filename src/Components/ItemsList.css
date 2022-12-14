@@ -62,6 +62,7 @@
 
 .update-popup{
     background-color: #e0e0f5;
+    width: 20%;
     padding: 20px;
     border-radius: 10px;
     position: absolute;
